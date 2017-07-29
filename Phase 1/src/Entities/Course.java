@@ -1,49 +1,80 @@
-package Entities;
-
-import java.util.Vector;
+package entities;
+import java.util.*;
 
 public class Course {
-	public Course(String name, char minGrade, String professorName, int year) {
-		setName(name) ;
-		setMinGrade(minGrade) ;
-		setProfessorName(professorName) ;
-		setYear (year) ;
-		
+	private String name;
+	private char min_grade;
+	private String professor_name;
+	private int year;
+	private Vector<String> student_names;
+	
+	public Course(String _name) {
+		name = _name;
+		student_names = new Vector<String>();
 	}
-	public String getName() {
+	
+	public Course(String _name, String _professor_name, char _min_grade, int _year) {
+		name = _name;
+		min_grade = _min_grade;
+		professor_name = _professor_name;
+		year = _year;
+		student_names = new Vector<String>();
+	}
+	
+	public Course(String _name, char _min_grade, String _professor_name, int _year, Vector<String> _student_names) {
+		name = _name;
+		min_grade = _min_grade;
+		professor_name = _professor_name;
+		year = _year;
+		student_names = (Vector<String>) _student_names.clone();
+	}
+	
+	public void set_name(String _name) {
+		name = _name;
+	}
+	
+	public String get_name() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
+	
+	public void set_min_grade(char _min_grade) {
+		min_grade = _min_grade;
 	}
-	public char getMinGrade() {
-		return minGrade;
+	
+	public char get_min_grade() {
+		return min_grade;
 	}
-	public void setMinGrade(char minGrade) {
-		this.minGrade = minGrade;
+	
+	public void set_professor_name(String _professor_name) {
+		professor_name = _professor_name;
 	}
-	public String getProfessorName() {
-		return professorName;
+	
+	public String get_professor_name() {
+		return professor_name;
 	}
-	public void setProfessorName(String professorName) {
-		this.professorName = professorName;
+	
+	public void set_year(int _year) {
+		year = _year;
 	}
-	public int getYear() {
+	
+	public int get_year() {
 		return year;
 	}
-	public void setYear(int year) {
-		this.year = year;
+	
+	public void add_student(String student_name) {
+		student_names.add(student_name);
 	}
-	public Vector<String> getStudentNames() {
-		return studentNames;
+	
+	public void add_students(Vector<String> _student_names) {
+		for(int i = 0; i < _student_names.size(); i++)
+			student_names.add(_student_names.get(i));
 	}
-	public void setStudentNames(Vector<String> studentNames) {
-		this.studentNames = studentNames;
+	
+	public void set_student_names(Vector<String> _student_names) {
+		student_names = (Vector<String>) _student_names.clone();
 	}
-	private String name ;
-	private char minGrade ;
-	private String professorName ;
-	private int year ;
-	private Vector<String> studentNames ;
-}
 
+	public Vector<String> get_student_names() {
+		return student_names;
+	}
+}
